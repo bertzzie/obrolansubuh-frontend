@@ -1,23 +1,25 @@
 {{set . "title" "Home"}}
+
+{{ append . "moreStyles" "libs/animateit/animateit.css" }}
+{{ append . "moreScripts" "libs/animateit/animateit.js" }}
+
 {{template "header.html" .}}
 
-<header class="hero-unit" style="background-color:#A9F16C">
-  <div class="container">
-    <div class="row">
-      <div class="hero-text">
-        <h1>It works!</h1>
-        <p></p>
-      </div>
-    </div>
-  </div>
-</header>
+<section id="landing">
+    <article class="slideshow" style="background-image:url('/public/img/landing/coffee-couple-640.jpg')">
+        <header class="animatedParent">
+            <h1 class="animated fadeInRight">Selamat datang di Obrolan Subuh</h1>
+            <p class="animated fadeInRight">Some intro words. Lorem ipsum dolor sit amet. Idi Nahui Eblan Ebany.</p>
+        </header>
+    </article>
 
-<div class="container">
-  <div class="row">
-    <div class="span6">
-      {{template "flash.html" .}}
-    </div>
-  </div>
-</div>
+    {{ range .posts }}
+        <article class="slideshow" style="background-image:url('{{ .CoverImage }}')">
+            <header class="animatedParent">
+                <h1 class="animated fadeInRight">{{ .Title }}</h1>
+            </header>
+        </article>
+    {{ end }}
+</section>
 
 {{template "footer.html" .}}
