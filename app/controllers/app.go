@@ -18,3 +18,10 @@ func (c App) Index() revel.Result {
 
 	return c.Render(posts)
 }
+
+func (c App) About() revel.Result {
+	var about models.SiteInfo
+	c.Trx.First(&about)
+
+	return c.Render(about)
+}

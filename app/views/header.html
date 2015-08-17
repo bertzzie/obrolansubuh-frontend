@@ -26,7 +26,7 @@
     </head>
 
     <body>
-        <header id="page-header">
+        <header id="page-header" {{ if .isLanding }} class="landing-header" {{ end }}>
             <h1 id="page-title">
                 <a href="/">Obrolan Subuh</a>
             </h1>
@@ -35,7 +35,9 @@
                 <ul>
                     <li><a href="">Tulisan</a></li>
                     <li><a href="">Penulis</a></li>
-                    <li><a href="">Tentang Kami</a></li>
+                    <li><a href="{{ url "App.About" }}">Tentang Kami</a></li>
                 </ul>
             </nav>
         </header>
+
+        <main id="content-container">

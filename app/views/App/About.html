@@ -1,0 +1,13 @@
+{{set . "title" "Tentang Obrolan Subuh"}}
+
+{{template "header.html" .}}
+
+<section class="page-content">
+	<h1 class="title">{{ .about.AboutUsTitle }}</h1>
+
+	<article class="post">
+		{{ raw .about.AboutUsContent }}
+	</article>
+</section>
+
+{{template "footer.html" .}}
