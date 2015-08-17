@@ -6,17 +6,24 @@
 {{template "header.html" .}}
 
 <section id="landing">
-    <article class="slideshow" style="background-image:url('/public/img/landing/coffee-couple-640.jpg')">
+    <article class="landing-slide" style="background-image:url('/public/img/landing/coffee-couple-640.jpg')">
         <header class="animatedParent">
             <h1 class="animated fadeInLeft">Selamat datang di Obrolan Subuh</h1>
-            <p class="animated fadeInLeft">Some intro words. Lorem ipsum dolor sit amet. Idi Nahui Eblan Ebany.</p>
+            <p class="animated fadeInLeft">Mari berbagi dan berdiskusi tentang apa saja.</p>
         </header>
     </article>
 
     {{ range .posts }}
         <article class="slideshow" style="background-image:url('{{ .CoverImage }}')">
-            <header class="animatedParent">
-                <h1 class="animated fadeInLeft">{{ .Title }}</h1>
+            <header class="animatedParent" data-sequence="850">
+                <h1 class="animated fadeInLeft" data-id="1">
+                    <a href="">{{ .Title }}</a>
+                </h1>
+                <a href="">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect animated fadeInDownShort" data-id="2">
+                        Baca Selengkapnya
+                    </button>
+                </a>
             </header>
         </article>
     {{ end }}
