@@ -8,15 +8,15 @@
 <section id="landing">
     <article class="slideshow" style="background-image:url('/public/img/landing/coffee-couple-640.jpg')">
         <header class="animatedParent">
-            <h1 class="animated fadeInRight">Selamat datang di Obrolan Subuh</h1>
-            <p class="animated fadeInRight">Some intro words. Lorem ipsum dolor sit amet. Idi Nahui Eblan Ebany.</p>
+            <h1 class="animated fadeInLeft">Selamat datang di Obrolan Subuh</h1>
+            <p class="animated fadeInLeft">Some intro words. Lorem ipsum dolor sit amet. Idi Nahui Eblan Ebany.</p>
         </header>
     </article>
 
     {{ range .posts }}
         <article class="slideshow" style="background-image:url('{{ .CoverImage }}')">
             <header class="animatedParent">
-                <h1 class="animated fadeInRight">{{ .Title }}</h1>
+                <h1 class="animated fadeInLeft">{{ .Title }}</h1>
             </header>
         </article>
     {{ end }}

@@ -1,11 +1,10 @@
-        {{if eq .RunMode "dev"}}
-            {{template "debug.html" .}}
-        {{end}}
+	        {{if eq .RunMode "dev"}}
+	            {{template "debug.html" .}}
+	        {{end}}
 
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
-
-        {{range .moreScripts}}
-        	<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
-        {{end}}
+	    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+	    {{range .moreScripts}}
+	    	<script src="/public/{{.}}" type="text/javascript" charset="utf-8"></script>
+	    {{end}}
     </body>
 </html>
