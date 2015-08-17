@@ -1,0 +1,17 @@
+{{set . "title" .post.Title}}
+
+{{ append . "moreStyles" "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css" }}
+
+{{template "header.html" .}}
+
+    <section id="post-heading" style="background-image:url('{{ .post.CoverImage }}')">
+    	<h1 class="title">{{ .post.Title }}</h1>
+	</section>
+
+<section class="page-content">
+	<article class="post">
+		{{ raw .post.Content }}
+	</article>
+</section>
+
+{{template "footer.html" .}}

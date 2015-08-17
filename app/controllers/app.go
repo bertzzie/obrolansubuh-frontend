@@ -19,6 +19,17 @@ func (c App) Index() revel.Result {
 	return c.Render(posts)
 }
 
+func (c App) Post(id int64, slug string) revel.Result {
+	var post models.Post
+	c.Trx.Where("id = ?", id).Find(&post)
+
+	if !post.Published {
+		return c.NotFound("Tulisan tidak ditemukan :(")
+	}
+
+	return c.Render(post)
+}
+
 func (c App) About() revel.Result {
 	var about models.SiteInfo
 	c.Trx.First(&about)

@@ -20,7 +20,7 @@
                 <h1 class="animated fadeInLeft" data-id="1">
                     <a href="">{{ .Title }}</a>
                 </h1>
-                <a href="">
+                <a href="{{ url "App.Post" .ID .TitleSlug }}">
                     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect animated fadeInDownShort" data-id="2">
                         Baca Selengkapnya
                     </button>
