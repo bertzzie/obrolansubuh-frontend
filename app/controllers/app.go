@@ -30,6 +30,13 @@ func (c App) Post(id int64, slug string) revel.Result {
 	return c.Render(post)
 }
 
+func (c App) Writers() revel.Result {
+	var writers []models.Contributor
+	c.Trx.Find(&writers)
+
+	return c.Render(writers)
+}
+
 func (c App) About() revel.Result {
 	var about models.SiteInfo
 	c.Trx.First(&about)
