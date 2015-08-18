@@ -1,0 +1,11 @@
+{{set . "title" "Daftar Tulisan"}}
+
+{{template "header.html" .}}
+
+<section class="page-content">
+{{ range .posts }}
+	<h1 class="title">{{ .Title }}</h1>
+{{ end }}
+</section>
+
+{{template "footer.html" .}}

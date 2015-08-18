@@ -19,6 +19,18 @@ func (c App) Index() revel.Result {
 	return c.Render(posts)
 }
 
+func (c App) PostList(page int) revel.Result {
+	var posts []models.Post
+
+	perpage := 15
+	c.Trx.Preload("Author").Limit(perpage).Offset((page - 1) * perpage).
+		Order("created_at desc").
+		Where("published = true").
+		Find(&posts)
+
+	return c.Render(posts)
+}
+
 func (c App) Post(id int64, slug string) revel.Result {
 	var post models.Post
 	c.Trx.Where("id = ?", id).Find(&post)
