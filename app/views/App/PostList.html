@@ -4,7 +4,15 @@
 
 <section class="page-content">
 {{ range .posts }}
+<article class="post">
 	<h1 class="title">{{ .Title }}</h1>
+	<section class="preview-content">
+		{{ .FirstParagraph }}
+	</section>
+	<section class="readmore">
+		<a href="{{ url "App.Post" .ID .TitleSlug }}">baca selengkapnya...</a>
+	</section>
+</article>
 {{ end }}
 </section>
 
