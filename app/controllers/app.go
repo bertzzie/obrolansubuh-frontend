@@ -22,13 +22,24 @@ func (c App) Index() revel.Result {
 func (c App) PostList(page int) revel.Result {
 	var posts []models.Post
 
-	perpage := 15
-	c.Trx.Preload("Author").Limit(perpage).Offset((page - 1) * perpage).
+	perpage := 10
+	c.Trx.Preload("Author").Preload("Categories").Limit(perpage).Offset((page - 1) * perpage).
 		Order("created_at desc").
 		Where("published = true").
 		Find(&posts)
 
-	return c.Render(posts)
+	var postCount, prevPage, nextPage int
+	c.Trx.Model(models.Post{}).Count(&postCount)
+
+	if page >= 2 {
+		prevPage = page - 1
+	}
+
+	if page*perpage < postCount {
+		nextPage = page + 1
+	}
+
+	return c.Render(posts, prevPage, nextPage)
 }
 
 func (c App) Post(id int64, slug string) revel.Result {

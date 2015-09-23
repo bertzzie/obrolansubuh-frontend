@@ -19,6 +19,7 @@
 
         <!-- Site CSS -->
         <link rel="stylesheet" href="/public/css/frontend.css">
+        <link rel="stylesheet" href="/public/css/frontend-responsive.css" media="all and (max-width: 480px)">
 
         {{range .moreStyles}}
             <link rel="stylesheet" type="text/css" href="/public/{{.}}">
@@ -33,7 +34,7 @@
 
             <nav id="main-nav">
                 <ul>
-                    <li><a href="{{ url "App.PostList" }}">Tulisan</a></li>
+                    <li><a href="{{ url "App.PostList" 1 }}">Tulisan</a></li>
                     <li><a href="{{ url "App.Writers" }}">Penulis</a></li>
                     <li><a href="{{ url "App.About" }}">Tentang Kami</a></li>
                 </ul>
