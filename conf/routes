@@ -9,6 +9,7 @@ GET     /posts                                  App.Posts
 GET     /post/:id/:slug                         App.Post
 GET     /writers                                App.Writers
 GET     /writer/:handle/posts                   App.WritersPosts
+GET     /category/:id/:slug                     App.CategoriesPosts
 GET     /about                                  App.About
 
 # Ignore favicon requests

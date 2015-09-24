@@ -10,6 +10,9 @@ type App struct {
 	osc.GormController
 }
 
+// Post per page
+const perpage = 10
+
 func (c App) Index() revel.Result {
 	var posts []models.Post
 	c.Trx.Limit(5).Order("created_at desc").
@@ -27,7 +30,6 @@ func (c App) Posts(page int) revel.Result {
 		page = 1
 	}
 
-	perpage := 10
 	c.Trx.Preload("Author").Preload("Categories").Limit(perpage).Offset((page - 1) * perpage).
 		Order("created_at desc").
 		Where("published = true").
@@ -77,7 +79,6 @@ func (c App) WritersPosts(handle string, page int) revel.Result {
 	}
 
 	var posts []models.Post
-	perpage := 5
 	c.Trx.Preload("Author").Preload("Categories").Limit(perpage).Offset((page-1)*perpage).
 		Order("created_at desc").
 		Where("author_id = ? AND published = true", writer.ID).
@@ -95,6 +96,35 @@ func (c App) WritersPosts(handle string, page int) revel.Result {
 	}
 
 	return c.Render(writer, posts, prevPage, nextPage)
+}
+
+func (c App) CategoriesPosts(id int, slug string, page int) revel.Result {
+	if page == 0 {
+		page = 1
+	}
+
+	var posts []models.Post
+	var category models.Category
+	c.Trx.Debug().Preload("Author").Preload("Categories").Limit(perpage).Offset((page-1)*perpage).
+		Order("created_at desc").
+		Joins("inner join post_categories on post_categories.post_id = posts.id").
+		Where("posts.published = true AND post_categories.category_id = ?", id).
+		Find(&posts)
+
+	c.Trx.Where("id = ?", id).Find(&category)
+
+	var postCount, prevPage, nextPage int
+	postCount = c.Trx.Model(&category).Association("Posts").Count()
+
+	if page >= 2 {
+		prevPage = page - 1
+	}
+
+	if page*perpage < postCount {
+		nextPage = page + 1
+	}
+
+	return c.Render(category, posts, prevPage, nextPage, slug)
 }
 
 func (c App) About() revel.Result {

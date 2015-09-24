@@ -1,0 +1,27 @@
+{{set . "title" (printf "Tulisan Kategori %s di ObrolanSubuh" .category.Heading)}}
+
+{{template "header.html" .}}
+
+<section class="category-profile">
+	<figure style="background-image: url({{ .category.Image }})"></figure>
+	<h2>{{ .category.Heading }}</h2>
+	<p>{{ .category.Description }}</p>
+</section>
+
+<div class="seperator">
+	<span>Tulisan dalam Kategori {{ .category.Heading }}</span>
+</div>
+
+<section class="page-content">
+	{{template "App/partials/PostList.html" .}}
+</section>
+
+<section class="post-paging">
+	<ul class="pagination">
+		<li {{ if not .prevPage }} class="disabled" {{ end }}><a href="{{ url "App.CategoriesPosts" .category.ID .slug .prevPage }}">&lt;&lt; Sebelumnya</a></li>
+		<li class="menu"><a href="#">Navigasi</a></li>
+		<li {{ if not .nextPage }} class="disabled" {{ end }}><a href="{{ url "App.CategoriesPosts" .category.ID .slug .nextPage }}">Berikutnya &gt;&gt;</a></li>
+	</ul>
+</section>
+
+{{template "footer.html" .}}

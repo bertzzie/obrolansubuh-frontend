@@ -3,8 +3,9 @@
 	<section class="info">
 		<figure style="background-image: url({{ .Author.Photo }});" class="author-pic"></figure>
 		<div class="data">
+			{{ $cat := (index .Categories 0) }}
 			<a href="{{ url "App.WritersPosts" .Author.Handle }}" class="author-name">{{ .Author.Name }}</a>
-			<a href="" class="post-category">kategori: {{ (index .Categories 0).Heading }}</a>
+			<a href="{{ url "App.CategoriesPosts" $cat.ID $cat.Slug }}" class="post-category">kategori: {{ $cat.Heading }}</a>
 		</div>
 		<div class="date">
 			{{ date .UpdatedAt }}
