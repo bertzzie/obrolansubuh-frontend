@@ -1,6 +1,16 @@
-{{set . "title" "Daftar Tulisan"}}
+{{set . "title" (printf "Tulisan %s di ObrolanSubuh" .writer.Name)}}
 
 {{template "header.html" .}}
+
+<section class="writer-profile">
+	<figure style="background-image: url({{ .writer.Photo }});"></figure>
+	<h2>{{ .writer.Name }}</h2>
+	<p>{{ .writer.About }}</p>
+</section>
+
+<div class="seperator">
+	<span>Karya di Obrolan Subuh</span>
+</div>
 
 <section class="page-content">
 {{ range .posts }}
@@ -26,14 +36,16 @@
 
 <hr class="seperator">
 
+{{ else }}
+<p>Belum ada tulisan dari {{ .writer.Name }}.</p>
 {{ end }}
 </section>
 
 <section class="post-paging">
 	<ul class="pagination">
-		<li {{ if not .prevPage }} class="disabled" {{ end }}><a href="{{ url "App.PostList" .prevPage }}">&lt;&lt; Sebelumnya</a></li>
+		<li {{ if not .prevPage }} class="disabled" {{ end }}><a href="{{ url "App.WritersPosts" .writer.Handle .prevPage }}">&lt;&lt; Sebelumnya</a></li>
 		<li class="menu"><a href="#">Navigasi</a></li>
-		<li {{ if not .nextPage }} class="disabled" {{ end }}><a href="{{ url "App.PostList" .nextPage }}">Berikutnya &gt;&gt;</a></li>
+		<li {{ if not .nextPage }} class="disabled" {{ end }}><a href="{{ url "App.WritersPosts" .writer.Handle .nextPage }}">Berikutnya &gt;&gt;</a></li>
 	</ul>
 </section>
 

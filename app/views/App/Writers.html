@@ -21,9 +21,11 @@
 					{{ .About }}
 				</div>
 				<div class="mdl-card__actions mdl-card--border">
+					<a href="{{ url "App.WritersPosts" .Handle }}">
 					<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
 						Lihat Semua Tulisan
 					</button>
+					</a>
 				</div>
 			</div>
 		{{ end }}

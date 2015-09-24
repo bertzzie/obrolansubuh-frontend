@@ -60,6 +60,38 @@ func (c App) Writers() revel.Result {
 	return c.Render(writers)
 }
 
+func (c App) WritersPosts(handle string, page int) revel.Result {
+	writer, err := c.GetContributorByHandle(handle)
+	if err != nil {
+		return c.NotFound("Penulis tidak ditemukan :(")
+	}
+
+	// default value
+	if page == 0 {
+		page = 1
+	}
+
+	var posts []models.Post
+	perpage := 5
+	c.Trx.Preload("Author").Preload("Categories").Limit(perpage).Offset((page-1)*perpage).
+		Order("created_at desc").
+		Where("author_id = ? AND published = true", writer.ID).
+		Find(&posts)
+
+	var postCount, prevPage, nextPage int
+	c.Trx.Model(models.Post{}).Count(&postCount)
+
+	if page >= 2 {
+		prevPage = page - 1
+	}
+
+	if page*perpage < postCount {
+		nextPage = page + 1
+	}
+
+	return c.Render(writer, posts, prevPage, nextPage)
+}
+
 func (c App) About() revel.Result {
 	var about models.SiteInfo
 	c.Trx.First(&about)
