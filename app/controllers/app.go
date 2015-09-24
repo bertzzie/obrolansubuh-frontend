@@ -19,8 +19,13 @@ func (c App) Index() revel.Result {
 	return c.Render(posts)
 }
 
-func (c App) PostList(page int) revel.Result {
+func (c App) Posts(page int) revel.Result {
 	var posts []models.Post
+
+	// default value
+	if page == 0 {
+		page = 1
+	}
 
 	perpage := 10
 	c.Trx.Preload("Author").Preload("Categories").Limit(perpage).Offset((page - 1) * perpage).
@@ -79,7 +84,7 @@ func (c App) WritersPosts(handle string, page int) revel.Result {
 		Find(&posts)
 
 	var postCount, prevPage, nextPage int
-	c.Trx.Model(models.Post{}).Count(&postCount)
+	c.Trx.Model(models.Post{}).Where("author_id = ?", writer.ID).Count(&postCount)
 
 	if page >= 2 {
 		prevPage = page - 1

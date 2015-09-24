@@ -1,0 +1,17 @@
+{{set . "title" "Daftar Tulisan"}}
+
+{{template "header.html" .}}
+
+<section class="page-content">
+	{{template "App/partials/PostList.html" .}}
+</section>
+
+<section class="post-paging">
+	<ul class="pagination">
+		<li {{ if not .prevPage }} class="disabled" {{ end }}><a href="{{ url "App.Posts" .prevPage }}">&lt;&lt; Sebelumnya</a></li>
+		<li class="menu"><a href="#">Navigasi</a></li>
+		<li {{ if not .nextPage }} class="disabled" {{ end }}><a href="{{ url "App.Posts" .nextPage }}">Berikutnya &gt;&gt;</a></li>
+	</ul>
+</section>
+
+{{template "footer.html" .}}

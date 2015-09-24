@@ -13,32 +13,7 @@
 </div>
 
 <section class="page-content">
-{{ range .posts }}
-<article class="post">
-	<section class="info">
-		<figure style="background-image: url({{ .Author.Photo }});" class="author-pic"></figure>
-		<div class="data">
-			<a href="{{ url "App.WritersPosts" .Author.Handle }}" class="author-name">{{ .Author.Name }}</a>
-			<a href="" class="post-category">kategori: {{ (index .Categories 0).Heading }}</a>
-		</div>
-		<div class="date">
-			{{ date .UpdatedAt }}
-		</div>
-	</section>
-	<h1 class="title">{{ .Title }}</h1>
-	<section class="preview-content">
-		{{ .FirstParagraph }}
-	</section>
-	<section class="readmore">
-		<a href="{{ url "App.Post" .ID .TitleSlug }}">baca selengkapnya...</a>
-	</section>
-</article>
-
-<hr class="seperator">
-
-{{ else }}
-<p>Belum ada tulisan dari {{ .writer.Name }}.</p>
-{{ end }}
+	{{template "App/partials/PostList.html" .}}
 </section>
 
 <section class="post-paging">

@@ -5,7 +5,7 @@
 module:testrunner
 
 GET     /                                       App.Index
-GET     /post/list/:page                        App.PostList
+GET     /posts                                  App.Posts
 GET     /post/:id/:slug                         App.Post
 GET     /writers                                App.Writers
 GET     /writer/:handle/posts                   App.WritersPosts

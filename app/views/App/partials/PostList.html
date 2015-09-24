@@ -1,8 +1,3 @@
-{{set . "title" "Daftar Tulisan"}}
-
-{{template "header.html" .}}
-
-<section class="page-content">
 {{ range .posts }}
 <article class="post">
 	<section class="info">
@@ -25,16 +20,6 @@
 </article>
 
 <hr class="seperator">
-
+{{ else }}
+<p>Belum ada tulisan.</p>
 {{ end }}
-</section>
-
-<section class="post-paging">
-	<ul class="pagination">
-		<li {{ if not .prevPage }} class="disabled" {{ end }}><a href="{{ url "App.PostList" .prevPage }}">&lt;&lt; Sebelumnya</a></li>
-		<li class="menu"><a href="#">Navigasi</a></li>
-		<li {{ if not .nextPage }} class="disabled" {{ end }}><a href="{{ url "App.PostList" .nextPage }}">Berikutnya &gt;&gt;</a></li>
-	</ul>
-</section>
-
-{{template "footer.html" .}}
