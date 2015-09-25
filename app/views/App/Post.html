@@ -21,13 +21,15 @@
 
 <section id="page-comment">
     <h2>Diskusi dan Komentar</h2>
-    
+
     <div id="disqus_thread"></div>
     <script type="text/javascript">
         /* * * CONFIGURATION VARIABLES * * */
         var disqus_shortname  = 'obrolansubuh';
         var disqus_identifier = 'obrolansubuh_post_{{ .post.ID }}';
-        
+        var disqus_title      = '{{ .post.Title }}';
+        var disqus_url        = 'https://obrolansubuh.com/post/{{ .post.ID }}/{{ .slug }}';
+
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

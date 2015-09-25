@@ -57,7 +57,7 @@ func (c App) Post(id int64, slug string) revel.Result {
 		return c.NotFound("Tulisan tidak ditemukan :(")
 	}
 
-	return c.Render(post)
+	return c.Render(post, slug)
 }
 
 func (c App) Writers() revel.Result {
