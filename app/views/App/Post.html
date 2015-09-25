@@ -1,5 +1,7 @@
 {{set . "title" .post.Title}}
 
+{{ $page_url := printf "https://obrolansubuh.com/post/%d/%s" .post.ID .slug }}
+
 {{ append . "moreStyles" "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css" }}
 
 {{ define "headScripts" }}
@@ -11,6 +13,22 @@
 
 <section id="post-heading" style="background-image:url('{{ .post.CoverImage }}')">
 	<h1 class="title">{{ .post.Title }}</h1>
+</section>
+
+<section id="page-actions">
+    <div class="action">
+        <a href="#disqus_thread">
+            <i class="material-icons">chat_bubble_outline</i> &nbsp;
+            <span class="disqus-comment-count" data-disqus-identifier="obrolansubuh_post_{{ .post.ID }}">Komentar</span>
+        </a>
+    </div>
+
+    <div class="action">
+        <i class="material-icons">share</i> &nbsp;
+        <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer.php?t={{ .post.Title }}&amp;u={{ $page_url }}" onclick="window.open(this.href,this.target,'width=600,height=400,resizeable,scrollbars');return false;">Facebook</a>
+        &nbsp; | &nbsp;
+        <a target="_blank" rel="nofollow" href="https://twitter.com/share?text={{ .post.Title }}&amp;url={{ $page_url }}" onclick="window.open(this.href,this.target,'width=600,height=400,resizeable,scrollbars');return false;">Twitter</a>
+    </div>
 </section>
 
 <section class="page-content">
@@ -36,6 +54,14 @@
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
     </script>
     <noscript>Untuk melihat <a href="https://disqus.com/?ref_noscript" rel="nofollow">komentar dari Disqus</a> mohon aktifkan Javascript</noscript>
 </section>
