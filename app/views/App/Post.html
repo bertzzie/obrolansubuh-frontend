@@ -2,6 +2,10 @@
 
 {{ $page_url := printf "https://obrolansubuh.com/post/%d/%s" .post.ID .slug }}
 
+{{set . "ogurl" $page_url}}
+{{set . "ogtitle" .post.Title}}
+{{set . "ogimg" .post.CoverImage}}
+
 {{ append . "moreStyles" "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css" }}
 
 {{ define "headScripts" }}
