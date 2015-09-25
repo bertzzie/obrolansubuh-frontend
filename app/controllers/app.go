@@ -105,7 +105,7 @@ func (c App) CategoriesPosts(id int, slug string, page int) revel.Result {
 
 	var posts []models.Post
 	var category models.Category
-	c.Trx.Debug().Preload("Author").Preload("Categories").Limit(perpage).Offset((page-1)*perpage).
+	c.Trx.Preload("Author").Preload("Categories").Limit(perpage).Offset((page-1)*perpage).
 		Order("created_at desc").
 		Joins("inner join post_categories on post_categories.post_id = posts.id").
 		Where("posts.published = true AND post_categories.category_id = ?", id).
