@@ -19,26 +19,18 @@
 	<h1 class="title">{{ .post.Title }}</h1>
 </section>
 
-<section id="page-actions">
-    <div class="action">
-        <a href="#disqus_thread">
-            <i class="material-icons">chat_bubble_outline</i> &nbsp;
-            <span class="disqus-comment-count" data-disqus-identifier="obrolansubuh_post_{{ .post.ID }}">Komentar</span>
-        </a>
-    </div>
-
-    <div class="action">
-        <i class="material-icons">share</i> &nbsp;
-        <a target="_blank" rel="nofollow" href="https://www.facebook.com/sharer.php?t={{ .post.Title }}&amp;u={{ $page_url }}" onclick="window.open(this.href,this.target,'width=600,height=400,resizeable,scrollbars');return false;">Facebook</a>
-        &nbsp; | &nbsp;
-        <a target="_blank" rel="nofollow" href="https://twitter.com/share?text={{ .post.Title }}&amp;url={{ $page_url }}" onclick="window.open(this.href,this.target,'width=600,height=400,resizeable,scrollbars');return false;">Twitter</a>
-    </div>
-</section>
-
 <section class="page-content">
 	<article class="post">
 		{{ raw .post.Content }}
 	</article>
+</section>
+
+<section class="post-author">
+    <figure style="background-image: url({{ .post.Author.Photo }});"></figure>
+    <div>
+        <a href="{{ url "App.WritersPosts" .post.Author.Handle }}" class="author-name">{{ .post.Author.Name }}</a>
+        <p>{{ .post.Author.About }}</p>
+    </div>
 </section>
 
 <section id="page-comment">

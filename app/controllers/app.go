@@ -51,7 +51,7 @@ func (c App) Posts(page int) revel.Result {
 
 func (c App) Post(id int64, slug string) revel.Result {
 	var post models.Post
-	c.Trx.Where("id = ?", id).Find(&post)
+	c.Trx.Preload("Author").Where("id = ?", id).Find(&post)
 
 	if !post.Published {
 		return c.NotFound("Tulisan tidak ditemukan :(")
