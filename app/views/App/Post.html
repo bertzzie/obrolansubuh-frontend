@@ -2,6 +2,11 @@
 
 {{ append . "moreStyles" "bower_components/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin-frontend.min.css" }}
 
+{{ define "headScripts" }}
+<!-- Sumome -->
+<script src="//load.sumome.com/" data-sumo-site-id="a0c919c2fc3b483297e4f7587de1bfec512bfb1ebb428b915bbbb807e0a1b165" async="async"></script>
+{{ end }}
+
 {{template "header.html" .}}
 
 <section id="post-heading" style="background-image:url('{{ .post.CoverImage }}')">
@@ -14,4 +19,22 @@
 	</article>
 </section>
 
+<section id="page-comment">
+    <h2>Diskusi dan Komentar</h2>
+    
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname  = 'obrolansubuh';
+        var disqus_identifier = 'obrolansubuh_post_{{ .post.ID }}';
+        
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Untuk melihat <a href="https://disqus.com/?ref_noscript" rel="nofollow">komentar dari Disqus</a> mohon aktifkan Javascript</noscript>
+</section>
 {{template "footer.html" .}}
